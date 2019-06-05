@@ -1,0 +1,65 @@
+/** notes
+* *  ../../../node_modules/ = ~
+*/
+@import 'variables';
+@import 'custom-variables';
+@import 'carbon/carbon';
+
+@import '~bootstrap/scss/bootstrap';
+
+/**
+* Typography
+*/
+h1, h2, h3, h4, h5, h6 {
+    // font-weight: 300;
+    margin-bottom: $headings-margin-bottom;
+}
+
+/**
+* Forms
+*/
+.require::after {
+    content: "*";
+    margin-left: 6px;
+    color: $red;
+}
+
+.form-text {
+    color: $gray-600
+}
+
+/**
+* Cards
+*/
+.card {
+    border: 1px solid $border-color;
+    margin-bottom: 1.5rem;
+}
+
+.card-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    a, button {
+        display: block;
+        float: left;
+        padding: $card-spacer-y $card-spacer-x;
+        margin: 0 !important;
+        text-align: center;
+        background: transparent;
+    }
+}
+
+/**
+* Btns
+*/
+.btn {
+    i {
+        font-size: 0.875rem;
+    }
+
+    &.btn-rounded {
+        border-radius: 50px !important;
+    }
+}

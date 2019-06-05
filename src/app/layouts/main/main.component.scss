@@ -1,0 +1,50 @@
+@import 'carbon/variables-carbon';
+
+/**
+ * Page Wrapper
+ */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/**
+* Main Container
+*/
+.main-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin-top: $header-height;
+}
+
+/**
+* Content
+*/
+.content {
+    padding: $content-padding-y $content-padding-x;
+    min-width: 0;
+    flex: 1;
+    transition: 0.3s;
+}
+
+/**
+* Sidebar
+*/
+.sidebar-fixed {
+    .content {
+        margin-left: $sidebar-width;
+
+        @include media-breakpoint-down('md') {
+            margin-left: 0;
+        }
+    }
+}
+
+.sidebar-hidden {
+    .content {
+        margin-left: 0;
+    }
+}
+

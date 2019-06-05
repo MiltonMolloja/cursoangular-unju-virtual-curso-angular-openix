@@ -1,0 +1,40 @@
+<div class="login-bg"></div>
+<div class="login-title">
+    T.P. FINAL ANGULAR
+    <img src="./content/assets/images/angular.png" alt="logo" width="50px">
+</div>
+<div class="login-container">
+    <div class="login-box">
+        <div class="card p-4">
+            <div class="card-header text-center text-uppercase h4 font-weight-light">
+                Iniciar Sesión
+            </div>
+
+            <div class="card-body py-5">
+                <form class="form" role="form" (ngSubmit)="login()">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario"
+                                name="username" [(ngModel)]="loginModel.username">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Contraseña"
+                                name="password" [(ngModel)]="loginModel.password">
+                    </div>
+
+                    <!-- <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" name="rememberMe" id="rememberMe" [(ngModel)]="loginModel.rememberMe" checked>
+                        <label class="custom-control-label" for="rememberMe">Recordarme</label>
+                    </div> -->
+                    <button type="submit" class="btn btn-warning mt-5 btn-lg btn-block">Iniciar Sessión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

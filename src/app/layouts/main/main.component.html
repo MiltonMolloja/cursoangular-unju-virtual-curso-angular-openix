@@ -1,0 +1,14 @@
+
+<div id="main" class="sidebar-fixed">
+    <div class="page-wrapper">
+        <router-outlet name="navbar" *ngIf="principalService.authenticated"></router-outlet>
+        <div class="main-container">
+            <app-sidebar *ngIf="principalService.authenticated"></app-sidebar>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <!-- <impeh-footer></impeh-footer> -->
+    </div>
+</div>
+<!-- <impeh-footer></impeh-footer> -->

@@ -1,0 +1,16 @@
+/**
+ * Variables
+ */
+@import "variables-carbon";
+
+/**
+ * Bootstrap
+ */
+@import "~bootstrap/scss/functions";
+
+/**
+ * Carbon
+ */
+@import "mixins";
+@import "utilities";
+@import "switches";

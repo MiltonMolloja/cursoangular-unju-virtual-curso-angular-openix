@@ -1,0 +1,55 @@
+@import 'custom-variables';
+
+.login-bg {
+    background: url();
+    background-image: url('#{$images-dir}/backgrounds/bg-login-screen.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+}
+
+.login-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 50px;
+    margin-left: 50px;
+    color: #ff764b;
+    font-size: medium;
+    font-weight: bold;
+    font-family: cursive;
+    z-index: 5000;
+}
+
+.login-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    justify-content: center !important;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 4000;
+
+    & .login-box {
+        width: 450px;
+    }
+}
+
+.btn-warning {
+    background-color: #fc5723;
+    border-color: #fc5723;
+    &:hover {
+        background-color: #c42f00;
+        border-color: #a62902;
+    }
+}

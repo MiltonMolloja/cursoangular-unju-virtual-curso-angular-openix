@@ -1,0 +1,91 @@
+@import 'carbon/variables-carbon';
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+.sidebar-mobile-toggle, .sidebar-toggle {
+    cursor: pointer;
+}
+
+.page-header {
+    height: $header-height;
+    background-color: $white;
+    flex-direction: row;
+
+    .navbar-brand {
+        // font-weight: 500;
+        img {
+            height: 30px;
+            margin-bottom: 4px;
+            margin-right: 8px;
+        }
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        align-items: center;
+
+        .nav-item {
+            min-width: 50px;
+            position: relative;
+
+            .badge {
+                position: absolute;
+                top: 50%;
+                margin-top: -16px;
+                margin-left: 0;
+                border-radius: 50%;
+            }
+        }
+
+        .avatar {
+            border-radius: 50em;
+            width: 2.7rem;
+        }
+
+        .dropdown-menu {
+            padding: 0;
+            min-width: 12rem;
+            position: absolute;
+
+            .dropdown-header {
+                padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+                background: theme-color("teal-dark");
+                text-align: center;
+                color: white;
+                border-bottom: 1px solid $border-color;
+            }
+
+            .dropdown-item {
+                padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+                border-bottom: 1px solid $border-color;
+
+                i {
+                    width: 20px;
+                    margin-right: 10px;
+                    color: $gray-400;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+
+@include media-breakpoint-down('sm') {
+    .navbar-brand {
+        font-size: small;
+    }
+
+    .avatar {
+        width: 2rem !important;
+    }
+}
+
+.settings span, .dropdown-toggle::after {
+    vertical-align: super;
+}
+
+.settings:hover {
+    color: theme-color("teal-dark");
+}

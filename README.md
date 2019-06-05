@@ -1,1 +1,3 @@
-cursoangular-unju-virtual-curso-angular-openix
+# CursoAngular-UNJu-Virtual
+
+Proyecto para el TP Final del curso de angular.
