@@ -11,28 +11,30 @@
             </div>
 
             <div class="card-body py-5">
-                <form class="form" role="form" (ngSubmit)="login()">
+                <form class="form" role="form" (ngSubmit)="login()" #signupForm="ngForm">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <input type="text" class="form-control" placeholder="Usuario"
-                                name="username" [(ngModel)]="loginModel.username">
+                                name="username" [(ngModel)]="loginModel.username" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Contraseña"
-                                name="password" [(ngModel)]="loginModel.password">
+                        <input type="password" class="form-control" placeholder="Contraseña"
+                                name="password" [(ngModel)]="loginModel.password"
+                                placeholder="Password" required>
+                                
                     </div>
 
                     <!-- <div class="custom-control custom-checkbox mt-4">
                         <input type="checkbox" class="custom-control-input" name="rememberMe" id="rememberMe" [(ngModel)]="loginModel.rememberMe" checked>
                         <label class="custom-control-label" for="rememberMe">Recordarme</label>
                     </div> -->
-                    <button type="submit" class="btn btn-warning mt-5 btn-lg btn-block">Iniciar Sessión</button>
+                    <button   type="submit" class="btn btn-warning mt-5 btn-lg btn-block" [disabled]="!signupForm.form.valid" >Iniciar Sessión</button>
                 </form>
             </div>
         </div>
