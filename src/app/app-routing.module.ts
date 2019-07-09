@@ -4,8 +4,13 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@shared/util';
 import { NavbarComponent } from './layouts';
 import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
+import { BrandComponent } from './features/brand/brand.component';
 
 const routes: Routes = [
+    {
+        path: 'brand',
+        component: BrandComponent,
+    },
     {
         path: '',
         component: NavbarComponent,
