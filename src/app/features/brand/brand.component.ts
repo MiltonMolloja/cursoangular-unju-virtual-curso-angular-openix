@@ -11,12 +11,12 @@ import { BrandService } from '@shared/services/brand.service';
 export class BrandComponent implements OnInit {
 
     constructor(private brandService: BrandService) {
-        this.getAllBrand(1,25);
+        //this.getAllBrand(1,25);
     }
 
     ngOnInit() {
     }
-
+/**
     getAllBrand(page: number, size: number) {
         this.brandService.getAllBrand(page, size).subscribe(
             (result) => {
@@ -28,11 +28,6 @@ export class BrandComponent implements OnInit {
             }
         )
     }
-
-
-
-
-
-
+     */
 
 }

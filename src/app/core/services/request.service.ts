@@ -37,6 +37,7 @@ export class RequestService {
         options.headers = options.headers || new HttpHeaders();
         options.params = options.params || new HttpParams();
 
+        console.log(this.http.request<T>(options.method, this.baseURL + options.url, options));
         return this.http.request<T>(options.method, this.baseURL + options.url, options).pipe(
             tap(
                 next => {},

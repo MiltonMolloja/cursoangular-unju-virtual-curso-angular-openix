@@ -44,12 +44,14 @@ export class PrincipalService {
     }
 
     getIdentity(): Observable<Account> {
+
         if (this.userIdentity) return of(this.userIdentity);
 
         return this.accountService.get().pipe(
             tap(
                 result => {
                     this.userIdentity = result;
+                    console.log(result);
                     this.authenticated = true;
                     this.authenticationState.next(this.userIdentity);
                 },

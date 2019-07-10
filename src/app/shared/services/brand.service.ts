@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BrandService {
 
   constructor(private _http: HttpClient) { }
-
+/***
   public getAllBrandv2(page:number, size:number):Observable<any>{
     // petición por get a esa url de un api rest
     const httpOptions = {
@@ -26,4 +26,5 @@ export class BrandService {
     const options = new RequestOptions({method: 'GET', url, params, headers});
     return this.request<T>(options);
 }
+** */
 }
