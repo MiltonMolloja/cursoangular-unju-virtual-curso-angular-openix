@@ -51,7 +51,6 @@ export class PrincipalService {
             tap(
                 result => {
                     this.userIdentity = result;
-                    console.log(result);
                     this.authenticated = true;
                     this.authenticationState.next(this.userIdentity);
                 },

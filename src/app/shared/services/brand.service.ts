@@ -17,4 +17,17 @@ export class BrandService {
     get(id : number): Observable<Brand>{
         return this.requestService.get(this.apiUrl+"/"+id);
     }
+
+    getAll(pag: number, element: number): Observable<Brand>{
+        return this.requestService.get(this.apiUrl+"?page="+pag+"&size="+element);
+    }
+
+    post(brand: Brand): Observable<Brand>{
+        return this.requestService.post(this.apiUrl,brand);
+    }
+
+    put(brand: Brand): Observable<Brand>{
+        console.log(this.apiUrl+"/"+brand.id);
+        return this.requestService.post(this.apiUrl+"/"+brand.id,brand);
+    }
 }
