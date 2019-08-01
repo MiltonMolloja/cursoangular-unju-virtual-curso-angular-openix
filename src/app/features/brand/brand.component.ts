@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandService } from '@shared/services/brand.service';
+import { Brand } from '@shared/models/brand.model';
 
 
 
@@ -11,23 +12,16 @@ import { BrandService } from '@shared/services/brand.service';
 export class BrandComponent implements OnInit {
 
     constructor(private brandService: BrandService) {
-        //this.getAllBrand(1,25);
+        this.brandService.get(1).subscribe( (response: Brand) => {
+            console.log(response);
+        }
+        , error => console.log(error)
+        );
     }
 
     ngOnInit() {
     }
-/**
-    getAllBrand(page: number, size: number) {
-        this.brandService.getAllBrand(page, size).subscribe(
-            (result) => {
-                //es necesario que convierta el JSON que
-                console.log(result);
-            },
-            error => {
-                alert("Error en la petición");
-            }
-        )
-    }
-     */
+
+
 
 }
