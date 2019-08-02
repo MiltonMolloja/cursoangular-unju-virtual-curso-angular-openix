@@ -11,8 +11,11 @@ export class Sale {
     payMode: string;
     saleDate: Date;
     seller: User;
+    data: any;
+    carId: any;
+    customerId: number;
 
-    constructor(car: Car, customer: Customer, discount: number, finalPrice: number, id: number, payMode: string, saleDate: Date, seller: User) {
+    Sale(car: Car, customer: Customer, discount: number, finalPrice: number, id: number, payMode: string, saleDate: Date, seller: User) {
         this.car = car;
         this.customer = customer;
         this.discount = discount;

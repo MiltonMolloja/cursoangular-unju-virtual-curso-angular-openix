@@ -6,8 +6,9 @@ export class Customer {
     firstName: string;
     id: number;
     lastName: string;
+    data: any;
 
-    constructor(address: string, birthdate: Date, dni: string, email: string, firstName: string, id: number, lastName: string) {
+    Customer(address: string, birthdate: Date, dni: string, email: string, firstName: string, id: number, lastName: string) {
         this.address = address;
         this.birthdate = birthdate;
         this.dni = dni;

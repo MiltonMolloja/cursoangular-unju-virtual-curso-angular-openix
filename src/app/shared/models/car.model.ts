@@ -1,6 +1,7 @@
 import { Brand } from "./brand.model";
 
 export class Car {
+    [x: string]: any;
     brand: Brand;
     color: string;
     costPrice: number;
@@ -12,7 +13,8 @@ export class Car {
     version: string;
     year: number;
 
-    constructor(brand: Brand, color: string, costPrice: number, id: number,
+
+    Car(brand: Brand, color: string, costPrice: number, id: number,
         img: string, model: string, motor: string, salePrice: number, version: string, year: number){
     this.brand = brand;
     this.color = color;

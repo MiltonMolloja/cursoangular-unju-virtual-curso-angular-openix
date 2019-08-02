@@ -7,8 +7,10 @@ export class User {
     mail: string;
     name: string;
     password: string;
+    data: any;
+    username: string;
 
-    constructor(birthday: Date, firstName: string, fullName: string, id: number, lastName: string, mail: string, name: string, password: string) {
+    User(birthday: Date, firstName: string, fullName: string, id: number, lastName: string, mail: string, name: string, password: string) {
     this.birthday = birthday;
     this.firstName = firstName;
     this.fullName = fullName;
