@@ -18,7 +18,8 @@ export class BrandComponent implements OnInit {
         this.brands = new Array<Brand>();
         //this.getBrandId(1);
         //this.postBrand();
-        this.putBrand(2);
+        //this.putBrand(2);
+        //this.deletebrand(2);
         this.getBrandAll();
     }
 
@@ -81,9 +82,14 @@ export class BrandComponent implements OnInit {
         );
     }
 
-
-
-
-
-
+    deletebrand(id: number) {
+        this.brandService.delete(id).subscribe(
+            result => {
+                console.log("Se añadio escribania");
+            },
+            error => {
+                alert("Error en añadir escribania");
+            }
+        );
+    }
 }

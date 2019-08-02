@@ -28,6 +28,10 @@ export class BrandService {
 
     put(brand: Brand): Observable<Brand>{
         console.log(this.apiUrl+"/"+brand.id);
-        return this.requestService.post(this.apiUrl+"/"+brand.id,brand);
+        return this.requestService.put(this.apiUrl+"/"+brand.id,brand);
+    }
+
+    delete(id : number){
+        return this.requestService.delete(this.apiUrl+"/"+id);
     }
 }
