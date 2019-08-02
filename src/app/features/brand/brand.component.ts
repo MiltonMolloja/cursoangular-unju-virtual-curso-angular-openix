@@ -38,10 +38,8 @@ export class BrandComponent implements OnInit {
 
     getBrandAll() {
         this.brandService.getAll(0, 25).subscribe((response) => {
-            this.brands = new Array<Brand>();
-            response.data.forEach(element => {
-                this.brands.push(element);
-            });
+            this.brands = response.data;
+            
             //this.brands = response;
             console.log(this.brands);
         }
