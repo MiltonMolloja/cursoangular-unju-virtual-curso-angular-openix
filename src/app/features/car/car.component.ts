@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from '@shared/services/car.service';
 import { Car } from '@shared/models/car.model';
 import { Brand } from '@shared/models/brand.model';
+import { BrandService } from '@shared/services/brand.service';
 
 @Component({
     selector: 'app-car',
@@ -10,20 +11,35 @@ import { Brand } from '@shared/models/brand.model';
 })
 export class CarComponent implements OnInit {
     car: Car;
-    brand: Brand;
     cars: Array<Car>;
 
-    constructor(private carService: CarService) {
-        this.car = new Car();
+    brand: Brand;
+    brands: Array<Brand>;
+
+
+    constructor(private carService: CarService, private brandService: BrandService) {
         this.brand = new Brand();
+        this.brands = new Array<Brand>();
+        this.getBrandAll();
+
+        this.car = new Car();
         this.cars = new Array<Car>();
-        //this.deleteCars(1);
-        //this.putCars(1);
-        //this.postBrand();
         this.getCarsAll();
+
+
     }
 
     ngOnInit() {
+    }
+
+    getBrandAll() {
+        this.brandService.getAll(0, 25).subscribe((response) => {
+            this.brands = response.data;
+            //this.brands = response;
+            console.log(this.brands);
+        }
+            , error => console.log(error)
+        );
     }
 
     getCarsId(id: number) {
@@ -49,23 +65,16 @@ export class CarComponent implements OnInit {
         );
     }
 
-    postBrand() {
-        this.car = new Car();
-        this.brand = new Brand();
-        this.brand.id = 1;
+    postCar() {
         this.car.brand = this.brand;
         this.car.brandId = this.car.brand.id;
-        this.car.color = "Negro";
-        this.car.costPrice = 9999;
         this.car.img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4irRlswEYYOs2HL5oe9X6WfTXalclFegI1GV0MRgdDJqWxiS";
-        this.car.model = "Loogan";
         this.car.motor = "55";
-        this.car.salePrice = 99999;
         this.car.version = "MiaMia";
-        this.car.year = 2019;
         this.carService.post(this.car).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getCarsAll();
             },
             error => {
                 alert("Error en añadir escribania");
@@ -73,24 +82,11 @@ export class CarComponent implements OnInit {
         );
     }
 
-    putCars(id: number) {
-        this.car = new Car();
-        this.brand = new Brand();
-        this.brand.id = 1;
-        this.car.brand = this.brand;
-        this.car.brandId = this.car.brand.id;
-        this.car.id = 1;
-        this.car.color = "XxXxX";
-        this.car.costPrice = 5555;
-        this.car.img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4irRlswEYYOs2HL5oe9X6WfTXalclFegI1GV0MRgdDJqWxiS";
-        this.car.model = "Loogan";
-        this.car.motor = "55";
-        this.car.salePrice = 50505;
-        this.car.version = "ModMod";
-        this.car.year = 5555;
+    putCars() {
         this.carService.put(this.car).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getCarsAll();
             },
             error => {
                 alert("Error en añadir escribania");
@@ -102,6 +98,7 @@ export class CarComponent implements OnInit {
         this.carService.delete(id).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getCarsAll();
             },
             error => {
                 alert("Error en añadir escribania");
@@ -109,5 +106,15 @@ export class CarComponent implements OnInit {
         );
     }
 
+    public elegirCar(car:Car){
+        this.car = Object.assign(this.car, car);
+        this.brand = this.car.brand;
+    }
+
+    public initCar(){
+        this.car = new Car();
+    }
+
 }
+
 

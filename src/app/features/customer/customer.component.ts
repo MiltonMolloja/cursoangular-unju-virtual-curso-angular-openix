@@ -16,10 +16,6 @@ export class CustomerComponent implements OnInit {
     constructor(private customerService: CustomerService) {
         this.customer = new Customer();
         this.customers = new Array<Customer>();
-        //this.getCustomersId(1);
-        //this.postCustomer();
-        //this.putCustomers(1);
-        //this.deleteCustomers(1);
         this.getCustomersAll();
     }
 
@@ -51,16 +47,11 @@ getCustomersAll() {
 }
 
 postCustomer() {
-    this.customer = new Customer();
-    this.customer.address = "Direc XXX";
     this.customer.birthdate  = new Date();
-    this.customer.dni = "9999999";
-    this.customer.email = "micorreo@gmail.com";
-    this.customer.firstName = "My Name";
-    this.customer.lastName = "App";
     this.customerService.post(this.customer).subscribe(
         result => {
             console.log("Se añadio escribania");
+            this.getCustomersAll();
         },
         error => {
             alert("Error en añadir escribania");
@@ -68,17 +59,11 @@ postCustomer() {
     );
 }
 
-putCustomers(id: number) {
-    this.customer.id = 1;
-    this.customer.address = "Direc XXX";
-    this.customer.birthdate  = new Date();
-    this.customer.dni = "9999999";
-    this.customer.email = "micorreo@gmail.com";
-    this.customer.firstName = "My Name";
-    this.customer.lastName = "App";
+putCustomers() {
     this.customerService.put(this.customer).subscribe(
         result => {
             console.log("Se añadio escribania");
+            this.getCustomersAll();
         },
         error => {
             alert("Error en añadir escribania");
@@ -90,11 +75,21 @@ deleteCustomers(id: number) {
     this.customerService.delete(id).subscribe(
         result => {
             console.log("Se añadio escribania");
+            this.getCustomersAll();
         },
         error => {
             alert("Error en añadir escribania");
         }
     );
 }
+
+public elegirCustomer(customer:Customer){
+    this.customer = Object.assign(this.customer, customer);
+}
+
+public initCustomer(){
+    this.customer = new Customer();
+}
+
 
 }

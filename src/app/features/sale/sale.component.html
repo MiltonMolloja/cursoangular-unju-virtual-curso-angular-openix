@@ -1,3 +1,212 @@
-<p>
-  sale works!
-</p>
+<div class="table-title">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2 class="text-center mb-2 mb-md-0 mb-lg-0">Registro de <b>Venta</b></h2>
+        </div>
+        <div class="col-sm-12 col-md-6 ">
+            <a href="#addEmployeeModal" class="btn btn-success mb-0 mb-sm-0 mb-md-3" data-toggle="modal"
+                (click)="initSale()"><i class="material-icons">&#xE147;</i>
+                <span>Agregar Nueva Venta</span></a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Car</th>
+            <th>Cliente</th>
+            <th>Descuento</th>
+            <th>PrecioFinal</th>
+            <th>FormaDePago</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of sales">
+            <td>{{item.id}}</td>
+            <td>{{item.car}}</td>
+            <td>{{item.customer}}</td>
+            <td>{{item.discount}}</td>
+            <td>{{item.finalPrice}}</td>
+            <td>{{item.payMode}}</td>
+            <td>
+                <a href="#editEmployeeModal" class="edit" data-toggle="modal" (click)="elegirSale(item)">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> </a>
+                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" (click)="elegirSale(item)">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="row form-group">
+                    <label>Elija Marca:</label>
+                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car">
+                        <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
+                        </option>
+                    </select>
+                </div>
+                <div class="row form-group">
+                    <label>Elija Marca:</label>
+                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer">
+                        <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Auto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Descuento</label>
+                        <input type="number" class="form-control" rows="5" name="txtNombre" [(ngModel)]="sale.discount">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio Final</label>
+                        <input type="number" class="form-control" rows="5" name="txtNombre"
+                            [(ngModel)]="sale.finalPrice">
+                    </div>
+                    <select name="pay" class="custom-select" [(ngModel)]="sale.payMode">
+                        <option value="CONTADO">Contado</option>
+                        <option value="FINANCIADO">Financiado</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Actualizar" data-dismiss="modal"
+                        (click)="putSales()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Nuevo Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <div class="row form-group">
+                            <label>Elija Marca:</label>
+                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car">
+                                <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="row form-group">
+                            <label>Elija Marca:</label>
+                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer">
+                                <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Descuento</label>
+                                <input type="number" class="form-control" rows="5" name="txtNombre"
+                                    [(ngModel)]="sale.discount">
+                            </div>
+                            <div class="form-group">
+                                <label>Precio Final</label>
+                                <input type="number" class="form-control" rows="5" name="txtNombre"
+                                    [(ngModel)]="sale.finalPrice">
+                            </div>
+                            <div>
+                                <label>Forma de Pago</label>
+                                <select name="pay" class="custom-select" [(ngModel)]="sale.payMode">
+                                    <option value="CONTADO">Contado</option>
+                                    <option value="FINANCIADO">Financiado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input class="btn btn-success" data-dismiss="modal" value="Actualizar" data-dismiss="modal"
+                                (click)="putSales()">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Guardar" data-dismiss="modal"
+                        (click)="postSale()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Borrar Marca</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div>
+                    <div class="row form-group">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car"
+                        disabled="true">
+                            <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="row form-group">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer"
+                        disabled="true">
+                            <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Descuento</label>
+                            <input type="number" class="form-control" rows="5" name="txtNombre"
+                                [(ngModel)]="sale.discount"
+                                disabled="true">
+                        </div>
+                        <div class="form-group">
+                            <label>Precio Final</label>
+                            <input type="number" class="form-control" rows="5" name="txtNombre"
+                                [(ngModel)]="sale.finalPrice"
+                                disabled="true">
+                        </div>
+                        <div>
+                            <label>Forma de Pago</label>
+                            <select name="pay" class="custom-select" [(ngModel)]="sale.payMode"
+                            disabled="true">
+                                <option value="CONTADO">Contado</option>
+                                <option value="FINANCIADO">Financiado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Eliminar" data-dismiss="modal"
+                        (click)="deleteSales(sale.id)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -73,7 +73,7 @@ postUser() {
 
 putUsers(id: number) {
     this.user.id = 2;
-    this.user.birthday = n ew Date();
+    this.user.birthday = new Date();
     this.user.firstName = "userf",
     this.user.lastName = " Mi app" ;
     this.user.mail = "micoreo@gmail.com";

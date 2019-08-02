@@ -1,3 +1,195 @@
-<p>
-  car works!
-</p>
+<div class="table-title">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2 class="text-center mb-2 mb-md-0 mb-lg-0">Registro de <b>Autos</b></h2>
+        </div>
+        <div class="col-sm-12 col-md-6 ">
+            <a href="#addEmployeeModal" class="btn btn-success mb-0 mb-sm-0 mb-md-3" data-toggle="modal"
+                (click)="initCar()"><i class="material-icons">&#xE147;</i>
+                <span>Agregar Nueva Marca</span></a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Color</th>
+            <th>PrecioCosto</th>
+            <th>Model</th>
+            <th>PrecioVenta</th>
+            <th>Año</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cars">
+            <td>{{item.id}}</td>
+            <td>{{item.color}}</td>
+            <td>{{item.costPrice}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.salePrice}}</td>
+            <td>{{item.year}}</td>
+            <td>
+                <a href="#editEmployeeModal" class="edit" data-toggle="modal" (click)="elegirCar(item)">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> </a>
+                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" (click)="elegirCar(item)">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Auto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="brand">
+                            <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name}}
+                            </option>
+                        </select>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" class="form-control" rows="5" name="txtNombre" [(ngModel)]="car.color">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Costo</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.costPrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.model">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Venta</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.salePrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Año</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.year">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Actualizar" data-dismiss="modal"
+                        (click)="putCars()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Nuevo Auto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="brand">
+                            <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" class="form-control" rows="5" name="txtNombre" [(ngModel)]="car.color">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Costo</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.costPrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.model">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Venta</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.salePrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Año</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.year">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Guardar" data-dismiss="modal"
+                        (click)="postCar()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Borrar Marca</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <label>Marca:</label>
+                        <input type="text" class="form-control" rows="5" name="txtNombre" [(ngModel)]="car.brand"
+                        disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" class="form-control" rows="5" name="txtNombre" [(ngModel)]="car.color"
+                        disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Costo</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.costPrice"
+                            disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.model"
+                        disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio de Venta</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto"
+                            [(ngModel)]="car.salePrice"
+                            disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Año</label>
+                        <input type="number" class="form-control" rows="5" name="txtprecioCosto" [(ngModel)]="car.year"
+                        disabled="true">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input class="btn btn-success" data-dismiss="modal" value="Eliminar" data-dismiss="modal"
+                        (click)="deleteCars(car.id)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

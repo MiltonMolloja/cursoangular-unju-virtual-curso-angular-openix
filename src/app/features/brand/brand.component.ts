@@ -4,6 +4,8 @@ import { Brand } from '@shared/models/brand.model';
 
 
 
+
+
 @Component({
     selector: 'app-brand',
     templateUrl: './brand.component.html',
@@ -16,10 +18,6 @@ export class BrandComponent implements OnInit {
     constructor(private brandService: BrandService) {
         this.brand = new Brand();
         this.brands = new Array<Brand>();
-        //this.getBrandId(1);
-        //this.postBrand();
-        //this.putBrand(2);
-        //this.deletebrand(2);
         this.getBrandAll();
     }
 
@@ -39,7 +37,6 @@ export class BrandComponent implements OnInit {
     getBrandAll() {
         this.brandService.getAll(0, 25).subscribe((response) => {
             this.brands = response.data;
-            
             //this.brands = response;
             console.log(this.brands);
         }
@@ -48,14 +45,10 @@ export class BrandComponent implements OnInit {
     }
 
     postBrand() {
-        //postBrand(brand: Brand){
-        this.brand.name = "XxX";
-        this.brand.description = "???";
-        console.log("this.brand");
-        console.log(this.brand);
         this.brandService.post(this.brand).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getBrandAll();
             },
             error => {
                 alert("Error en añadir escribania");
@@ -63,16 +56,11 @@ export class BrandComponent implements OnInit {
         );
     }
 
-    putBrand(id: number) {
-        //postBrand(brand: Brand){
-        this.brand.name = "XxX";
-        this.brand.id = 2;
-        this.brand.description = "???";
-        console.log("this.brand");
-        console.log(this.brand);
+    putBrand() {
         this.brandService.put(this.brand).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getBrandAll();
             },
             error => {
                 alert("Error en añadir escribania");
@@ -84,10 +72,21 @@ export class BrandComponent implements OnInit {
         this.brandService.delete(id).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.getBrandAll();
             },
             error => {
                 alert("Error en añadir escribania");
             }
         );
     }
+
+
+    public elegirBrand(brand:Brand){
+        this.brand = Object.assign(this.brand, brand);
+    }
+
+    public initBrand(){
+        this.brand = new Brand();
+    }
+
 }
