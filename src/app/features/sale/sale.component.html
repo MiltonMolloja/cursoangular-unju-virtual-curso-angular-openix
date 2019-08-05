@@ -48,8 +48,8 @@
             <div>
                 <div class="row form-group">
                     <label>Elija Marca:</label>
-                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car">
-                        <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
+                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.carId">
+                        <option *ngFor="let car of cars" [ngValue]="car.id">{{car.model}}
                         </option>
                     </select>
                 </div>

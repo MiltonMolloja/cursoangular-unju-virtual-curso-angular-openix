@@ -97,6 +97,7 @@ export class SaleComponent implements OnInit {
         this.sale.car = this.car;
         this.sale.carId= this.car.id;
         this.sale.customer = this.customer;
+        this.sale.customerId = this.customer.id;
         this.sale.saleDate = new Date();
         this.saleService.post(this.sale).subscribe(
             result => {
