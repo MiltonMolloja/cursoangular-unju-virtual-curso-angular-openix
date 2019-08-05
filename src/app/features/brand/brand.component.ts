@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BrandService } from '@shared/services/brand.service';
 import { Brand } from '@shared/models/brand.model';
 
+import { PnotifyService } from './../../shared/services/pnotify.service';
+
 
 
 
@@ -15,10 +17,15 @@ export class BrandComponent implements OnInit {
     brand: Brand;
     brands: Array<Brand>;
 
-    constructor(private brandService: BrandService) {
+    pnotify = undefined;
+
+    constructor(private brandService: BrandService,pnotifyService: PnotifyService) {
         this.brand = new Brand();
         this.brands = new Array<Brand>();
         this.getBrandAll();
+
+        this.pnotify = pnotifyService.getPNotify();
+    this.pnotify.defaults.styling = 'bootstrap4';
     }
 
     ngOnInit() {
@@ -48,6 +55,10 @@ export class BrandComponent implements OnInit {
         this.brandService.post(this.brand).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.info({
+                    text: "Se Guardo Correctamtne",
+                    type: 'info'
+                  });
                 this.getBrandAll();
             },
             error => {
@@ -60,6 +71,10 @@ export class BrandComponent implements OnInit {
         this.brandService.put(this.brand).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.success({
+                    text: "Se Modificado Correctamente..",
+                    type: 'success'
+                  });
                 this.getBrandAll();
             },
             error => {
@@ -72,6 +87,10 @@ export class BrandComponent implements OnInit {
         this.brandService.delete(id).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.error({
+                    text: "Se Elimino Correctamente..",
+                    type: 'danger'
+                  });
                 this.getBrandAll();
             },
             error => {

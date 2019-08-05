@@ -10,6 +10,8 @@ import { HomeModule } from 'app/home/home.module';
 import { MainComponent, NavbarComponent, FooterComponent, SidebarComponent } from 'app/layouts';
 import { FeaturesModule } from 'app/features/features.module';
 
+import { PnotifyService } from './../app/shared/services/pnotify.service';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -22,6 +24,7 @@ import { FeaturesModule } from 'app/features/features.module';
         AppRoutingModule
     ],
     declarations: [MainComponent, NavbarComponent, SidebarComponent, FooterComponent],
+    providers: [ PnotifyService ],
     bootstrap: [MainComponent]
 })
 export class AppModule { }

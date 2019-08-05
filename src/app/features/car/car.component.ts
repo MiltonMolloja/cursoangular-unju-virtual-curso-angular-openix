@@ -4,6 +4,8 @@ import { Car } from '@shared/models/car.model';
 import { Brand } from '@shared/models/brand.model';
 import { BrandService } from '@shared/services/brand.service';
 
+import { PnotifyService } from './../../shared/services/pnotify.service';
+
 @Component({
     selector: 'app-car',
     templateUrl: './car.component.html',
@@ -16,8 +18,10 @@ export class CarComponent implements OnInit {
     brand: Brand;
     brands: Array<Brand>;
 
+    pnotify = undefined;
 
-    constructor(private carService: CarService, private brandService: BrandService) {
+
+    constructor(private carService: CarService, private brandService: BrandService,pnotifyService: PnotifyService) {
         this.brand = new Brand();
         this.brands = new Array<Brand>();
         this.getBrandAll();
@@ -25,6 +29,9 @@ export class CarComponent implements OnInit {
         this.car = new Car();
         this.cars = new Array<Car>();
         this.getCarsAll();
+
+        this.pnotify = pnotifyService.getPNotify();
+        this.pnotify.defaults.styling = 'bootstrap4';
 
 
     }
@@ -74,6 +81,10 @@ export class CarComponent implements OnInit {
         this.carService.post(this.car).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.info({
+                    text: "Se Guardo Correctamtne",
+                    type: 'info'
+                  });
                 this.getCarsAll();
             },
             error => {
@@ -86,6 +97,10 @@ export class CarComponent implements OnInit {
         this.carService.put(this.car).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.success({
+                    text: "Se Modificado Correctamente..",
+                    type: 'success'
+                  });
                 this.getCarsAll();
             },
             error => {
@@ -98,6 +113,10 @@ export class CarComponent implements OnInit {
         this.carService.delete(id).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.error({
+                    text: "Se Elimino Correctamente..",
+                    type: 'danger'
+                  });
                 this.getCarsAll();
             },
             error => {

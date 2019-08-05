@@ -7,6 +7,8 @@ import { CarService } from '@shared/services/car.service';
 import { Car } from '@shared/models/car.model';
 import { Customer } from '@shared/models/customer.model';
 
+import { PnotifyService } from './../../shared/services/pnotify.service';
+
 
 @Component({
     selector: 'app-sale',
@@ -24,9 +26,10 @@ export class SaleComponent implements OnInit {
     customer: Customer;
     customers: Array<Customer>;
 
+    pnotify = undefined;
 
-
-    constructor(private saleService: SaleService, private customerService: CustomerService, private carService: CarService) {
+    constructor(private saleService: SaleService, private customerService: CustomerService, private carService: CarService,pnotifyService: PnotifyService
+        ) {
         this.car = new Car();
         this.cars = new Array<Car>();
         this.getCarsAll();
@@ -39,6 +42,9 @@ export class SaleComponent implements OnInit {
         this.sale = new Sale();
         this.sales = new Array<Sale>();
         this.getSalesAll();
+
+        this.pnotify = pnotifyService.getPNotify();
+        this.pnotify.defaults.styling = 'bootstrap4';
     }
 
     ngOnInit() {
@@ -98,6 +104,11 @@ export class SaleComponent implements OnInit {
         this.saleService.post(this.sale).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.info({
+                    text: "Se Guardo Correctamtne",
+                    type: 'info'
+                  });
+
                 this.getSalesAll();
             },
             error => {
@@ -110,6 +121,10 @@ export class SaleComponent implements OnInit {
         this.saleService.put(this.sale).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.success({
+                    text: "Se Modificado Correctamente..",
+                    type: 'success'
+                  });
                 this.getSalesAll();
             },
             error => {
@@ -122,6 +137,10 @@ export class SaleComponent implements OnInit {
         this.saleService.delete(id).subscribe(
             result => {
                 console.log("Se añadio escribania");
+                this.pnotify.error({
+                    text: "Se Elimino Correctamente..",
+                    type: 'danger'
+                  });
                 this.getSalesAll();
             },
             error => {
