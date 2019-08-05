@@ -66,8 +66,8 @@ export class CarComponent implements OnInit {
     }
 
     postCar() {
-        this.car.brand = this.brand;
-        this.car.brandId = this.car.brand.id;
+        //this.car.brand = this.brand;
+        //this.car.brandId = this.car.brand.id;
         this.car.img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4irRlswEYYOs2HL5oe9X6WfTXalclFegI1GV0MRgdDJqWxiS";
         this.car.motor = "55";
         this.car.version = "MiaMia";

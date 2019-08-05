@@ -8,6 +8,7 @@ export class Customer {
     lastName: string;
     data: any;
 
+
     Customer(address: string, birthdate: Date, dni: string, email: string, firstName: string, id: number, lastName: string) {
         this.address = address;
         this.birthdate = birthdate;
@@ -16,6 +17,7 @@ export class Customer {
         this.firstName = firstName;
         this.id = id;
         this.lastName = lastName;
+
     }
 
 }

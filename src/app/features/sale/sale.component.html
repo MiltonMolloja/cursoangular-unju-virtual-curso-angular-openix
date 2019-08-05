@@ -25,8 +25,8 @@
     <tbody>
         <tr *ngFor="let item of sales">
             <td>{{item.id}}</td>
-            <td>{{item.car}}</td>
-            <td>{{item.customer}}</td>
+            <td>{{item.carModel}}</td>
+            <td>{{item.customerName}}</td>
             <td>{{item.discount}}</td>
             <td>{{item.finalPrice}}</td>
             <td>{{item.payMode}}</td>
@@ -46,25 +46,26 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div>
-                <div class="row form-group">
-                    <label>Elija Marca:</label>
-                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.carId">
-                        <option *ngFor="let car of cars" [ngValue]="car.id">{{car.model}}
-                        </option>
-                    </select>
-                </div>
-                <div class="row form-group">
-                    <label>Elija Marca:</label>
-                    <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer">
-                        <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
-                        </option>
-                    </select>
-                </div>
+
                 <div class="modal-header">
                     <h4 class="modal-title">Editar Auto</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <div class="row form-group">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.carId">
+                            <option *ngFor="let car of cars" [ngValue]="car.id">{{car.model}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="row form-group">
+                        <label>Elija Marca:</label>
+                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.customerId">
+                            <option *ngFor="let customer of customers" [ngValue]="customer.id">{{customer.firstName}}
+                            </option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label>Descuento</label>
                         <input type="number" class="form-control" rows="5" name="txtNombre" [(ngModel)]="sale.discount">
@@ -95,23 +96,24 @@
         <div class="modal-content">
             <div>
                 <div class="modal-header">
-                    <h4 class="modal-title">Nuevo Cliente</h4>
+                    <h4 class="modal-title">Nueva Venta</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
 
                     <div>
-                        <div class="row form-group">
+                        <div class="form-group">
                             <label>Elija Marca:</label>
-                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car">
-                                <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
+                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.carId">
+                                <option *ngFor="let car of cars" [ngValue]="car.id">{{car.model}}
                                 </option>
                             </select>
                         </div>
-                        <div class="row form-group">
-                            <label>Elija Marca:</label>
-                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer">
-                                <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
+                        <div class="form-group">
+                            <label>Elija Cliente:</label>
+                            <select name="empresa" id="empresa" class="form-control" [(ngModel)]="sale.customerId">
+                                <option *ngFor="let customer of customers" [ngValue]="customer.id">
+                                    {{customer.firstName}}
                                 </option>
                             </select>
                         </div>
@@ -133,11 +135,6 @@
                                     <option value="FINANCIADO">Financiado</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input class="btn btn-success" data-dismiss="modal" value="Actualizar" data-dismiss="modal"
-                                (click)="putSales()">
                         </div>
                     </div>
 
@@ -162,39 +159,31 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div>
-                    <div class="row form-group">
-                        <label>Elija Marca:</label>
-                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="car"
-                        disabled="true">
-                            <option *ngFor="let car of cars" [ngValue]="car">{{car.model}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="row form-group">
-                        <label>Elija Marca:</label>
-                        <select name="empresa" id="empresa" class="form-control" [(ngModel)]="customer"
-                        disabled="true">
-                            <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.firstName}}
-                            </option>
-                        </select>
-                    </div>
+
                     <div class="modal-body">
+                            <div class=" form-group">
+                                    <label>Elija Modelo:</label>
+                                    <input type="number" class="form-control" rows="5" name="txtNombre"
+                                    [(ngModel)]="sale.carModel" disabled="true">
+                                </div>
+                                <div class=" form-group">
+                                    <label>Cliente:</label>
+                                    <input type="number" class="form-control" rows="5" name="txtNombre"
+                                        [(ngModel)]="sale.customerName" disabled="true">
+                                </div>
                         <div class="form-group">
                             <label>Descuento</label>
                             <input type="number" class="form-control" rows="5" name="txtNombre"
-                                [(ngModel)]="sale.discount"
-                                disabled="true">
+                                [(ngModel)]="sale.discount" disabled="true">
                         </div>
                         <div class="form-group">
                             <label>Precio Final</label>
                             <input type="number" class="form-control" rows="5" name="txtNombre"
-                                [(ngModel)]="sale.finalPrice"
-                                disabled="true">
+                                [(ngModel)]="sale.finalPrice" disabled="true">
                         </div>
                         <div>
                             <label>Forma de Pago</label>
-                            <select name="pay" class="custom-select" [(ngModel)]="sale.payMode"
-                            disabled="true">
+                            <select name="pay" class="custom-select" [(ngModel)]="sale.payMode" disabled="true">
                                 <option value="CONTADO">Contado</option>
                                 <option value="FINANCIADO">Financiado</option>
                             </select>

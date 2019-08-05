@@ -14,8 +14,10 @@ export class Sale {
     data: any;
     carId: any;
     customerId: number;
+    carModel: string;
+    customerName: string;
 
-    Sale(car: Car, customer: Customer, discount: number, finalPrice: number, id: number, payMode: string, saleDate: Date, seller: User) {
+    Sale(car: Car, customer: Customer, discount: number, finalPrice: number, id: number, payMode: string, saleDate: Date, seller: User, carModel: string, customerName: string) {
         this.car = car;
         this.customer = customer;
         this.discount = discount;
@@ -24,5 +26,7 @@ export class Sale {
         this.payMode = payMode;
         this.saleDate = saleDate;
         this.seller = seller;
+        this.carModel= carModel;
+        this.customerName= customerName;
     }
 }
